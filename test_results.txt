@@ -1,0 +1,5 @@
+1..3
+ok 1 The shell script file 'exercise1.sh' exists
+ok 2 The shell script file 'exercise1.sh' is executable
+ok 3 The script runs without generating an error code
+PASSED
