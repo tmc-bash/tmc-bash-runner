@@ -1,20 +1,57 @@
 #!/usr/bin/env bats
 
 setup() {
-    TEST_Project=`find ./ -name "passingSample"`
-    cd $TEST_Project
+    RESULTS_FILE="./.tmc_test_results.json"
+    POINTS_FILE="./.tmc_available_points.json"
+
+    TEST_PROJECT=`find ./ -name "testSample"`
+    cd $TEST_PROJECT
 }
 
-@test "runner can run tests properly" {
+@test "Runner can run tests properly" {
     run ./tmc/runner.sh
     [ "$status" -eq 0 ]
 }
 
-@test "file with tests results exist after running tests" {
-    [ -f "./.tmc_test_results.json" ]
+@test "File with tests results exists after running tests" {
+    [ -f $RESULTS_FILE ]
 }
 
-@test "available points file exists after calling available_points.sh" {
-    load ./tmc/available_points.sh
-    [ -f "./.tmc_available_points.json" ]
+@test "Available points file exists after executing available_points.sh" {
+    run ./tmc/available_points.sh
+    [ "$status" -eq 0 ]
+    [ -f $POINTS_FILE ]
+}
+
+@test "The number of tests is correct in the result file" {
+    count=$(grep -o 'name' $RESULTS_FILE | wc -l)
+    [ "$count" -eq 3 ]
+}
+
+@test "Two wrong tests with corresponding messages in the result file" {
+    msg1="Function sum return value doesn't match. Expected 'Sum is 6' but was 'Sum is 6.'."
+    msg2="Wrong status. Expected '0' but ws '127'."
+    
+    if grep -R "$msg1" $RESULTS_FILE && grep -R "$msg2" $RESULTS_FILE; then
+        exist=1
+    else
+        exist=0
+    fi
+
+    [ "$exist" -eq 1 ]
+}
+
+@test "One passed test and two failed tests" {
+    passed=$(grep -o 'true' $RESULTS_FILE | wc -l)
+    [ "$passed" -eq 1 ]
+
+    failed=$(grep -o 'false' $RESULTS_FILE | wc -l)
+    [ "$failed" -eq 2 ]
+}
+
+@test "All points can be found from .tmc_available_points.json file" {
+    if grep -R "2.3" $RESULTS_FILE && grep -R "2.4" $RESULTS_FILE && grep -R "2.5" $RESULTS_FILE; then
+        sum=3
+    fi
+    [ "$sum" -eq 3 ]
 }

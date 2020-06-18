@@ -28,12 +28,12 @@ do
     punc=","
   fi
 
-  name=$(echo $line | awk -F'ok [[:digit:]] ' '{print $2;}')
+  name=$(echo $line | awk -F'ok ' '{print $2;}')
   point=$(echo $line | awk -F'point:|, msg' '{print $2;}')
   status=true
 
   if [[ $line == *"not ok"* ]]; then
-    msg=$(echo $line | awk -F'msg:|, result' '{print $2;}')
+    msg=$(echo $line | awk -F'msg:|, result:' '{print $(NF-1)}')
     status=false
   else
     msg=""
