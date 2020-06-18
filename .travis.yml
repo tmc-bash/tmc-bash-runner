@@ -9,6 +9,9 @@ addons:
       - libelf-dev
       - libdw-dev
       - cmake
+      
+script:
+  - ./test/runnerTest.sh
 
 after_success: |
   wget https://github.com/SimonKagstrom/kcov/archive/master.tar.gz &&
