@@ -1,6 +1,6 @@
 # tmc-bash-runner
 
-Runs Bash code for TestMyCode. Returns the results of the unit tests as a JSON file which tmc-langs can parse,
+Runs Bash code for TestMyCode. Returns the results of the unit tests as a JSON file which tmc-langs can parse.
 
 ## Documentation
 
