@@ -11,3 +11,13 @@ clear_results() {
         rm $RESULTS_FILE
     fi
 }
+
+add_name() {
+
+  if grep -q "\"" "$AVAILABLE_POINTS"; then
+    punc=","
+  fi
+  
+  sed -i "s/}/$punc\"$1\"}/" $AVAILABLE_POINTS
+
+}

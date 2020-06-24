@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ./tmc/utils.sh
+
 if [ -z ${TEST_PATH+x} ]; then
   TEST_PATH=`find ./ -name "test"`
 
@@ -25,14 +27,16 @@ do
   var=$(echo $line | cut -d'"' -f 2)
 
   if [ $(($count % 2)) == 0 ]; then
+    add_name "$var"
 
-    if grep -q "\"" "$AVAILABLE_POINTS"; then
-      punc=","
-    fi
-
-    sed -i "s/}/$punc\"$var\"}/" $AVAILABLE_POINTS
   else
-    sed -i "s/}/:\"$var\"}/" $AVAILABLE_POINTS
+    if [[ $line == *"@point"* ]]; then
+      sed -i "s/}/:\"$var\"}/" $AVAILABLE_POINTS
+    else
+      sed -i "s/}/:\"-\"}/" $AVAILABLE_POINTS
+      add_name "$var"
+      count=$(($count+1))
+    fi
   fi
 
   count=$(($count+1))
