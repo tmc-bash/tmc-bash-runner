@@ -8,6 +8,12 @@ setup() {
     cd $TEST_PROJECT
 }
 
+to_count() {
+    count=$(grep -o 'name' $RESULTS_FILE | wc -l)
+    
+    echo $count
+}
+
 @test "Runner can run tests properly" {
     run ./tmc/runner.sh
     [ "$status" -eq 0 ]
@@ -24,8 +30,12 @@ setup() {
 }
 
 @test "The number of tests is correct in the result file" {
-    count=$(grep -o 'name' $RESULTS_FILE | wc -l)
-    [ "$count" = "3" ]
+    # count=$(grep -o 'name' $RESULTS_FILE | wc -l)
+    # echo "count type: $output" >&2
+    run to_count
+    # echo "count: $output" >&2
+
+    [ "$output" = "3" ]
 }
 
 @test "Two wrong tests with corresponding messages in the result file" {
