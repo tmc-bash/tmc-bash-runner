@@ -14,7 +14,7 @@ load ./tmc/point.sh
     @point "2.5"
     run ./src/non.sh
 
-    msg "Wrong status. Expected '0' but ws '$status'."
+    msg "Wrong status. Expected '0' but was '$status'."
     [ "$status" -eq 0 ]
 
     msg "Wrong return value. Expected 'Hello world!' but was '$output'."

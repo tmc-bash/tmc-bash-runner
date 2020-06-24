@@ -30,7 +30,7 @@ setup() {
 
 @test "Two wrong tests with corresponding messages in the result file" {
     msg1="Function sum return value doesn't match. Expected 'Sum is 6' but was 'Sum is 6.'."
-    msg2="Wrong status. Expected '0' but ws '127'."
+    msg2="Wrong status. Expected '0' but was '127'."
     
     if grep -R "$msg1" $RESULTS_FILE && grep -R "$msg2" $RESULTS_FILE; then
         exist=1
