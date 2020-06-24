@@ -8,4 +8,5 @@ install:
   - sudo ./install.sh /usr/local
 
 script:
+    - cd /home/travis/build/tmc-bash/tmc-bash-runner/
     - bats test/runnerTest.bats
