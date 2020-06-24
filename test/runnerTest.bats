@@ -25,7 +25,7 @@ setup() {
 
 @test "The number of tests is correct in the result file" {
     count=$(grep -o 'name' $RESULTS_FILE | wc -l)
-    [ "$count" -eq 3 ]
+    [ "$count" = "3" ]
 }
 
 @test "Two wrong tests with corresponding messages in the result file" {
@@ -38,7 +38,7 @@ setup() {
         exist=0
     fi
 
-    [ "$exist" -eq 1 ]
+    [ "$exist" = "1" ]
 }
 
 @test "One passed test and two failed tests" {
@@ -46,12 +46,14 @@ setup() {
     [ "$passed" -eq 1 ]
 
     failed=$(grep -o 'false' $RESULTS_FILE | wc -l)
-    [ "$failed" -eq 2 ]
+
+    [ "$failed" = "2" ]
 }
 
 @test "All points can be found from .tmc_available_points.json file" {
     if grep -R "2.3" $RESULTS_FILE && grep -R "2.4" $RESULTS_FILE && grep -R "2.5" $RESULTS_FILE; then
         sum=3
     fi
-    [ "$sum" -eq 3 ]
+
+    [ "$sum" = "3" ]
 }
