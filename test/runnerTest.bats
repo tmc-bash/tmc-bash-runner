@@ -26,39 +26,36 @@ setup() {
 
 @test "The number of tests is correct in the result file" {
     count=$(grep -o 'name' $RESULTS_FILE | wc -l)
-    # echo "count type: $output" >&2
-    # run echo $(grep -o 'name' $RESULTS_FILE | wc -l)
-    # echo "count: $output" >&2
 
     [ "$count" -eq 3 ]
 }
 
-# @test "Two wrong tests with corresponding messages in the result file" {
-#     msg1="Function sum return value doesn't match. Expected 'Sum is 6' but was 'Sum is 6.'."
-#     msg2="Wrong status. Expected '0' but was '127'."
+@test "Two wrong tests with corresponding messages in the result file" {
+    msg1="Function sum return value doesn't match. Expected 'Sum is 6' but was 'Sum is 6.'."
+    msg2="Wrong status. Expected '0' but was '127'."
     
-#     if grep -R "$msg1" $RESULTS_FILE && grep -R "$msg2" $RESULTS_FILE; then
-#         exist=1
-#     else
-#         exist=0
-#     fi
+    if grep -R "$msg1" $RESULTS_FILE && grep -R "$msg2" $RESULTS_FILE; then
+        exist=1
+    else
+        exist=0
+    fi
 
-#     [ "$exist" = "1" ]
-# }
+    [ "$exist" = "1" ]
+}
 
-# @test "One passed test and two failed tests" {
-#     passed=$(grep -o 'true' $RESULTS_FILE | wc -l)
-#     [ "$passed" -eq 1 ]
+@test "One passed test and two failed tests" {
+    passed=$(grep -o 'true' $RESULTS_FILE | wc -l)
+    [ "$passed" -eq 1 ]
 
-#     failed=$(grep -o 'false' $RESULTS_FILE | wc -l)
+    failed=$(grep -o 'false' $RESULTS_FILE | wc -l)
 
-#     [ "$failed" = "2" ]
-# }
+    [ "$failed" = "2" ]
+}
 
-# @test "All points can be found from .tmc_available_points.json file" {
-#     if grep -R "2.3" $RESULTS_FILE && grep -R "2.4" $RESULTS_FILE && grep -R "2.5" $RESULTS_FILE; then
-#         sum=3
-#     fi
+@test "All points can be found from .tmc_available_points.json file" {
+    if grep -R "2.3" $RESULTS_FILE && grep -R "2.4" $RESULTS_FILE && grep -R "2.5" $RESULTS_FILE; then
+        sum=3
+    fi
 
-#     [ "$sum" = "3" ]
-# }
+    [ "$sum" = "3" ]
+}
