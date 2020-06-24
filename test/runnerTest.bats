@@ -25,12 +25,12 @@ setup() {
 }
 
 @test "The number of tests is correct in the result file" {
-    # count=$(grep -o 'name' $RESULTS_FILE | wc -l)
+    count=$(grep -o 'name' $RESULTS_FILE | wc -l)
     # echo "count type: $output" >&2
-    run echo $(grep -o 'name' $RESULTS_FILE | wc -l)
+    # run echo $(grep -o 'name' $RESULTS_FILE | wc -l)
     # echo "count: $output" >&2
 
-    [ "$output" -eq 3 ]
+    [ "$count" -eq 3 ]
 }
 
 # @test "Two wrong tests with corresponding messages in the result file" {
