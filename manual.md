@@ -2,7 +2,7 @@
 This is a quick guide on how to use the bash runner that is developed for [tmc-bash/tmc-langs](https://github.com/tmc-bash/tmc-langs) to parse the results of a bash project.
 
 ## Description
-The bash runner runs the unit tests written by [bats-core](https://github.com/bats-core/bats-core). Additionally, it provides two attributes, `@point` and `msg`, to deliver points and error messages.
+The bash runner runs the unit tests written by [Bats-core](https://github.com/bats-core/bats-core). Additionally, it provides two attributes, `@point` and `msg`, to deliver points and error messages.
 
 ## Structure of the project
 A bash project along with the runner should have at least three folders `src`, `test` and `tmc`. Project files and bats tests are located in `src` and `test`, respectively. All components of the runner are contained in `tmc`.
