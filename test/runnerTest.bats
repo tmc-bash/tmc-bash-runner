@@ -52,10 +52,16 @@ setup() {
     [ "$failed" = "2" ]
 }
 
-@test "All points can be found from .tmc_available_points.json file" {
-    if grep -R "2.3" $RESULTS_FILE && grep -R "2.4" $RESULTS_FILE && grep -R "2.5" $RESULTS_FILE; then
-        sum=3
+@test "All test names and points can be found correspondingly from .tmc_available_points.json file" {
+
+    name1="This is a failed test with wrong return value"
+    name2="This is a failed test with wrong status"
+    name3="This is a passed test"
+
+    if grep -R "\"$name3\":\"2.3\"" $POINTS_FILE && grep -R "\"$name1\":\"2.4\"" $POINTS_FILE && grep -R "\"$name2\":\"2.5\"" $POINTS_FILE; then
+        points=3
     fi
 
-    [ "$sum" = "3" ]
+    [ "$points" = "3" ]
+
 }
