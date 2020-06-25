@@ -2,11 +2,35 @@ language: bash
 
 sudo: true
 
+addons:
+  apt:
+    packages:
+      - libcurl4-openssl-dev
+      - libelf-dev
+      - libdw-dev
+      - cmake
+
 install:
   - git clone https://github.com/bats-core/bats-core.git
   - cd bats-core
   - sudo ./install.sh /usr/local
 
 script:
-    - cd /home/travis/build/tmc-bash/tmc-bash-runner/
-    - bats test/runnerTest.bats
+  - cd /home/travis/build/tmc-bash/tmc-bash-runner/
+  - bats test/runnerTest.bats
+
+
+after_success: |
+  wget https://github.com/SimonKagstrom/kcov/archive/master.tar.gz &&
+  tar xzf master.tar.gz &&
+  cd kcov-master &&
+  mkdir build &&
+  cd build &&
+  cmake .. &&
+  make &&
+  sudo make install &&
+  cd ../.. &&
+  rm -rf kcov-master &&
+  mkdir -p coverage &&
+  kcov coverage script.sh &&
+  bash <(curl -s https://codecov.io/bash)
