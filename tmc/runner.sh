@@ -23,7 +23,7 @@ bats ${TEST_FILES[@]} >> $TEMP_RESULTS_FILE
 # Get names, points, status and msg and print to json
 while read line
 do
-  
+
   if grep -q '{' "$RESULTS_FILE"; then
     punc=","
   fi

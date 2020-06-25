@@ -5,8 +5,6 @@ setup() {
     POINTS_FILE="./.tmc_available_points.json"
 
     BASIC_PROJECT=`find ./ -name "basicSample"`
-    # NO_POINT_PROJECT=`find ./ -name "noPointSample"`
-
     cd $BASIC_PROJECT
 }
 
