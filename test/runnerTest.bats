@@ -4,27 +4,29 @@ setup() {
     RESULTS_FILE="./.tmc_test_results.json"
     POINTS_FILE="./.tmc_available_points.json"
 
-    TEST_PROJECT=`find ./ -name "testSample"`
-    cd $TEST_PROJECT
+    BASIC_PROJECT=`find ./ -name "basicSample"`
+    # NO_POINT_PROJECT=`find ./ -name "noPointSample"`
+
+    cd $BASIC_PROJECT
 }
 
 
-@test "Runner can run tests properly" {
+@test "Runner can run tests properly in basicSample dir" {
     run ./tmc/runner.sh
     [ "$status" -eq 0 ]
 }
 
-@test "File with tests results exists after running tests" {
+@test "File with tests results exists after running tests in basicSample dir" {
     [ -f $RESULTS_FILE ]
 }
 
-@test "Available points file exists after executing available_points.sh" {
+@test "Available points file exists after executing available_points.sh in basicSample dir" {
     run ./tmc/available_points.sh
     [ "$status" -eq 0 ]
     [ -f $POINTS_FILE ]
 }
 
-@test "The number of tests is correct in the result file" {
+@test "The number of tests is correct in the result file in basicSample dir" {
     count=$(grep -o 'name' $RESULTS_FILE | wc -l)
 
     [ "$count" -eq 3 ]
@@ -53,7 +55,6 @@ setup() {
 }
 
 @test "All test names and points can be found correspondingly from .tmc_available_points.json file" {
-
     name1="This is a failed test with wrong return value"
     name2="This is a failed test with wrong status"
     name3="This is a passed test"
