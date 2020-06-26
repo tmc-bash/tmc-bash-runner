@@ -19,7 +19,7 @@ projectRoot
 ```
 
 ## Usage
-To use attributes `@point` and `msg`, always load file `point.sh` from `tmc` directory by adding `load ./tmc/point.sh` before any tests in a bats file.
+To use attributes `@point` and `msg`, load file `point.sh` from `tmc` directory by adding `load ./tmc/point.sh` before any tests in a bats file. Remember to keep the root folder as working directory during testing.
 
 An example to use two attributes in a test:
 
