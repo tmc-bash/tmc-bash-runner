@@ -2,7 +2,7 @@
 This is a quick guide on how to use the bash runner that is developed for [tmc-bash/tmc-langs](https://github.com/tmc-bash/tmc-langs) to parse the results of a bash project.
 
 ## Description
-The bash runner runs the unit tests written by [bats-core](https://github.com/bats-core/bats-core). Additionally, it provides two attributes, `@point` and `msg`, to deliver points and error messages.
+The bash runner runs the unit tests written by [Bats-core](https://github.com/bats-core/bats-core). Additionally, it provides two attributes, `@point` and `msg`, to deliver points and error messages.
 
 ## Structure of the project
 A bash project along with the runner should have at least three folders `src`, `test` and `tmc`. Project files and bats tests are located in `src` and `test`, respectively. All components of the runner are contained in `tmc`.
@@ -19,7 +19,7 @@ projectRoot
 ```
 
 ## Usage
-To use attributes `@point` and `msg`, always load file `point.sh` from `tmc` directory by adding `load ./tmc/point.sh` before any tests in a bats file.
+To use attributes `@point` and `msg`, load file `point.sh` from `tmc` directory by adding `load ./tmc/point.sh` before any tests in a bats file. Remember to keep the root folder as working directory during testing.
 
 An example to use two attributes in a test:
 
