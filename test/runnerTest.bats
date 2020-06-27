@@ -57,7 +57,7 @@ setup() {
     name2="This is a failed test with wrong status"
     name3="This is a passed test"
 
-    if grep -R "\"$name3\":\"2.3\"" $POINTS_FILE && grep -R "\"$name1\":\"2.4\"" $POINTS_FILE && grep -R "\"$name2\":\"2.5\"" $POINTS_FILE; then
+    if grep -R "\"$name3\":\[\"2.3\"\]" $POINTS_FILE && grep -R "\"$name1\":\[\"2.4\"\]" $POINTS_FILE && grep -R "\"$name2\":\[\"2.5\"\]" $POINTS_FILE; then
         points=3
     fi
 
